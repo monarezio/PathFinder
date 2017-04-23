@@ -28,4 +28,14 @@ interface Board {
      */
     fun getFields(): List<List<Field>>
 
+    /**
+     * returns the amount of rows
+     */
+    fun getRows(): Int
+
+    /**
+     * returns the amount of columns
+     */
+    fun getColumns(): Int
+
 }

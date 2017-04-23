@@ -21,6 +21,10 @@ data class GameBoard private constructor(private val fields: List<List<Field>>) 
 
     override fun getFields(): List<List<Field>> = fields
 
+    override fun getRows(): Int = fields[0].size
+
+    override fun getColumns(): Int = fields.size
+
     companion object {
         fun createBoard(fields: List<List<Field>>): Board = GameBoard(fields)
     }
