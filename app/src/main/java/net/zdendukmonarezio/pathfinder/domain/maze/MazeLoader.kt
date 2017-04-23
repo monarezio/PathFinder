@@ -7,15 +7,10 @@ import rx.Observable
 /**
  * Created by monarezio on 22/04/2017.
  */
-interface Loader {
+interface MazeLoader {
 
     /**
      * gets the raw file content of the maze
      */
     fun getRawMazeData(context: Context, name: String): Observable<String>
-
-    /**
-     * gets the file content and converts it into a maze
-     */
-    fun getJsonMazeData(context: Context, name: String): Observable<Map<*, *>>
 }

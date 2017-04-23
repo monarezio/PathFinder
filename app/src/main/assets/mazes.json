@@ -1,0 +1,14 @@
+{
+  "list": [
+    {
+      "fileName": "0",
+      "name": "First level",
+      "description": "Some random description for the level."
+    },
+    {
+      "fileName": "1",
+      "name": "Second level",
+      "description": "DOES NOT EXIST"
+    }
+  ]
+}

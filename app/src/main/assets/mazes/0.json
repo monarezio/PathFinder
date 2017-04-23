@@ -1,20 +1,8 @@
 {
-  "0" : {
-    "north": -1,
-    "east": -1,
-    "south": -1,
-    "west": 1
-  },
-  "1" : {
-    "north": -1,
-    "east": 0,
-    "south": -1,
-    "west": -1
-  },
-  "2" : {
-    "north": -1,
-    "east": -1,
-    "south": 1,
-    "west": -1
-  }
+  "maze": [
+    ["SOLID", "SOLID", "SOLID", "SOLID"],
+    ["SOLID", "SOLID", "SOLID", "SOLID"],
+    ["SOLID", "SOLID", "SOLID", "SOLID"],
+    ["SOLID", "SOLID", "SOLID", "SOLID"]
+  ]
 }

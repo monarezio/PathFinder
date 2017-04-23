@@ -1,5 +1,8 @@
 package net.zdendukmonarezio.pathfinder.domain.game
 
+import android.content.Context
+import com.google.gson.GsonBuilder
+import net.zdendukmonarezio.pathfinder.data.maze.MazeData
 import net.zdendukmonarezio.pathfinder.domain.common.extensions.isInBounds
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.GameBoard
@@ -43,12 +46,11 @@ class Game private constructor(private val board: Board) : Maze{
 
         @JvmStatic fun createMaze(board: Board): Maze = Game(board)
 
-        @JvmStatic fun createMocMaze(): Maze = Game(GameBoard.createBoard(listOf(
-                listOf(Field.SOLID, Field.SOLID, Field.SOLID, Field.SOLID),
-                listOf(Field.PLAYER, Field.AIR, Field.AIR, Field.AIR),
-                listOf(Field.SOLID, Field.SOLID, Field.SOLID, Field.SOLID),
-                listOf(Field.SOLID, Field.SOLID, Field.SOLID, Field.SOLID)
-        )))
+        @JvmStatic fun createFromFile(context: Context, fileName: String): Maze {
+            val gson = GsonBuilder().create()
+            val json = MazeData().getRawMazeData(context, fileName).toBlocking().first()
+            return createMaze(gson.fromJson(json, GameBoard::class.java))
+        }
 
     }
 }
