@@ -19,6 +19,11 @@ interface Board {
     fun set(x: Int, y: Int, field: Field): Board
 
     /**
+     * sets the field on the given position
+     */
+    fun set(coordinate: Coordinate, field: Field): Board
+
+    /**
      * returns the fields as a 2d list
      */
     fun getFields(): List<List<Field>>
