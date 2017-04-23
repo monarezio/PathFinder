@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.game.GameActivity">
+
+    <net.zdendukmonarezio.pathfinder.presentation.game.GameBoardLayout
+        android:id="@+id/game_board_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOLEVA"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/arrow_right"
+        android:layout_toEndOf="@+id/arrow_right" />
+
+    <Button
+        android:id="@+id/arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOPRAVA"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/arrow_up"
+        android:layout_toEndOf="@+id/arrow_up" />
+
+    <Button
+        android:id="@+id/arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAHORU"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/arrow_down"
+        android:layout_toEndOf="@+id/arrow_down" />
+
+    <Button
+        android:id="@+id/arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="DOLU" />
+
+</RelativeLayout>

@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backgroudColor">#222222</color>
+    <color name="anonFieldColor">#2a2a2a</color>
+    <color name="redFieldColor">#d55336</color>
+    <color name="blueFieldColor">#35b8d5</color>
+    <color name="white">#FFFFFF</color>
 </resources>
