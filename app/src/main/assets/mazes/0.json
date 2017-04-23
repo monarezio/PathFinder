@@ -1,7 +1,7 @@
 {
   "maze": [
     ["SOLID", "SOLID", "SOLID", "SOLID"],
-    ["SOLID", "SOLID", "SOLID", "SOLID"],
+    ["AIR", "AIR", "PLAYER", "AIR"],
     ["SOLID", "SOLID", "SOLID", "SOLID"],
     ["SOLID", "SOLID", "SOLID", "SOLID"]
   ]
