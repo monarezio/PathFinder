@@ -40,7 +40,8 @@ public class GamePresenter extends Presenter<GameView> {
     }
 
     public void setupGame(int id, Context context) {
-        game = Game.createFromFile(context, Mazes.getIntance().getMazes(context).toBlocking().first().component1().get(id).getFileName());
+        game = Game.createFromFile(context, "" + id);
+        System.out.println(game.getBoard());
         viewIfExists().subscribe(view -> {
             view.showGameBoard(game.getBoard());
         });
