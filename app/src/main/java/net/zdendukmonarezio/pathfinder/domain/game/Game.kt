@@ -21,11 +21,15 @@ class Game private constructor(private val board: Board) : Maze{
         val pos = getPlayerPosition()
         return mapOf<Direction, Coordinate>(Pair(Direction.NORTH, pos.north()), Pair(Direction.EAST, pos.east()),
                 Pair(Direction.SOUTH, pos.south()), Pair(Direction.WEST, pos.west()))
-                .filter { i -> board.getFields().isInBounds(i.value) }
+                .filter { i -> board.getFields().isInBounds(i.value)}
+                .filter { i -> board.getFields()[i.value.y][i.value.x] != Field.SOLID  }
                 .map { i -> i.key }.toSet()
     }
 
     override fun move(direction: Direction): Maze {
+        if(!getAvailableMoves().contains(direction))
+            return this
+
         val pos = getPlayerPosition()
 
         val board = this.board.set(pos, Field.AIR) //Remove the player from the current position

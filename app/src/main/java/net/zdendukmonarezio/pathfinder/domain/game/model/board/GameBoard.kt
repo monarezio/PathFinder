@@ -15,7 +15,7 @@ data class GameBoard private constructor(private val fields: List<List<Field>>) 
         return Coordinate(x, y)
     }
 
-    override fun set(x: Int, y: Int, field: Field): Board = GameBoard(fields.set(x, fields[x].set(y, field)))
+    override fun set(x: Int, y: Int, field: Field): Board = GameBoard(fields.set(y, fields[y].set(x, field)))
 
     override fun set(coordinate: Coordinate, field: Field): Board = set(coordinate.x, coordinate.y, field)
 
