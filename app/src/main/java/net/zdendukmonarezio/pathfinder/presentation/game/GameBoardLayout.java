@@ -35,7 +35,7 @@ public class GameBoardLayout extends GridLayout {
         /*setColumnCount(gameBoard.getColumns()); - this completely stops this function idk why*/
         for (int r = 0; r < gameBoard.getRows(); r++) {
             for (int c = 0; c < gameBoard.getColumns(); c++) {
-                BoardFieldWidget field = new BoardFieldWidget(getContext(), gameBoard.getFields().get(r).get(c), r, c, 500);
+                BoardFieldWidget field = new BoardFieldWidget(getContext(), gameBoard.getFields().get(r).get(c), r, c, 100);
                 addView(field);
             }
         }
