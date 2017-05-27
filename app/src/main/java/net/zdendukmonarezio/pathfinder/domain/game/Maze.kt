@@ -3,6 +3,7 @@ package net.zdendukmonarezio.pathfinder.domain.game
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction
+import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Path
 
 /**
  * Created by monarezio on 22/04/2017.
@@ -15,9 +16,14 @@ interface Maze {
     fun getPlayerPosition(): Coordinate
 
     /**
-     * returns the list of next moves. null means he can't go there
+     * returns a set of next moves, form the position of the player.
      */
     fun getAvailableMoves(): Set<Direction>
+
+    /**
+     * returns a set of next moves, form the position given as the argument.
+     */
+    fun getAvailableMoves(pos: Coordinate): Set<Direction>
 
     /**
      * returns a new Loader with direction moved to the new direction
@@ -28,4 +34,10 @@ interface Maze {
      * returns the board
      */
     fun getBoard(): Board
+
+
+    /**
+     * returns the correct path
+     */
+    fun getPath(from: Coordinate, to: Coordinate): Path
 }

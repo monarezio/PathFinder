@@ -10,8 +10,8 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field
 data class GameBoard private constructor(private val fields: List<List<Field>>) : Board{
 
     override fun find(field: Field): Coordinate {
-        val y = fields.indexOfFirst { i -> i.contains(Field.PLAYER) }
-        val x = fields[y].indexOfFirst { i -> i == Field.PLAYER }
+        val y = fields.indexOfFirst { i -> i.contains(field) }
+        val x = fields[y].indexOfFirst { i -> i == field }
         return Coordinate(x, y)
     }
 

@@ -12,4 +12,20 @@ data class Coordinate(val x: Int, val y: Int) {
     fun east(): Coordinate = Coordinate(x + 1, y)
 
     fun west(): Coordinate = Coordinate(x - 1, y)
+
+    fun getNextCoordinate(direction: Direction): Coordinate {
+        if(direction == Direction.NORTH)
+            return north();
+        else if(direction == Direction.EAST)
+            return east();
+        else if(direction == Direction.SOUTH)
+            return south();
+        else
+            return west();
+    }
+
+    fun getNextCoordinates(directions: Set<Direction>): Set<Coordinate>
+            = directions.map { i -> getNextCoordinate(i) }.toSet()
+
+    fun isEmpty(): Boolean = x == -1 && y == - 1
 }
