@@ -62,8 +62,8 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
     public void gameWon() {
         gameId++;
         getPresenter().setupGame(gameId, this);
-        fadeIn(announcer_background, 1000);
-        fadeIn(levelUp_announcer, 1000);
+        fadeIn(announcer_background, 500);
+        fadeIn(levelUp_announcer, 500);
         levelUp_announcer.setText("You won!");
         final Handler handler = new Handler();
         handler.postDelayed(() -> {

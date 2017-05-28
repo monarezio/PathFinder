@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import net.zdendukmonarezio.pathfinder.R;
@@ -14,9 +15,9 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<Maze> mazes;
+    private RecyclerViewListener mListener = null;
     private int color1;
     private int color2;
-    private RecyclerViewListener mListener = null;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -25,11 +26,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         public TextView title;
         public TextView desc;
+        public CheckBox finished_checkbox;
 
         public ViewHolder(View v) {
             super(v);
             desc = (TextView) itemView.findViewById(R.id.desc);
             title = (TextView) itemView.findViewById(R.id.title);
+            finished_checkbox = (CheckBox) itemView.findViewById(R.id.checkBox_finished);
         }
     }
 
@@ -59,6 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.itemView.setBackgroundColor(position % 2 == 0 ? color1 : color2);
         holder.title.setText(mazes.get(position).component2());
         holder.desc.setText(mazes.get(position).component3());
+        holder.finished_checkbox.setChecked(mazes.get(position).component4());
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.OnClickListener(position);
