@@ -2,21 +2,12 @@ package net.zdendukmonarezio.pathfinder.presentation.game;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 
 import net.zdendukmonarezio.pathfinder.domain.game.Game;
 import net.zdendukmonarezio.pathfinder.domain.game.Maze;
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board;
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction;
-import net.zdendukmonarezio.pathfinder.domain.mazes.Mazes;
 import net.zdendukmonarezio.pathfinder.presentation.Presenter;
-
-import java.util.List;
-
-import kotlin.Pair;
-
-import static android.R.attr.x;
-import static android.R.attr.y;
 
 public class GamePresenter extends Presenter<GameView> {
 
@@ -28,7 +19,23 @@ public class GamePresenter extends Presenter<GameView> {
     }
 
     public void onMoveMade(Direction direction) {
-        presentMove(direction);
+        /*game.didLoose() ? viewIfExists().subscribe(view -> {
+            view.gameLost(false);
+        }) : game.didWin() ? viewIfExists().subscribe(view -> {
+            view.gameLost(true);
+        }):presentMove(direction);
+*/
+        if (game.didLoose()) {
+            viewIfExists().subscribe(view -> {
+                view.gameLost();
+            });
+        } else if (game.didWin()) {
+            viewIfExists().subscribe(view -> {
+                view.gameWon();
+            });
+        } else {
+            presentMove(direction);
+        }
     }
 
     private void presentMove(Direction direction) {
@@ -41,7 +48,6 @@ public class GamePresenter extends Presenter<GameView> {
 
     public void setupGame(int id, Context context) {
         game = Game.createFromFile(context, "" + id);
-        System.out.println(game.getBoard());
         viewIfExists().subscribe(view -> {
             view.showGameBoard(game.getBoard());
         });

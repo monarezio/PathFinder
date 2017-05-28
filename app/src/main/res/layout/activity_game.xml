@@ -16,28 +16,28 @@
         android:id="@+id/arrow_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DOLEVA"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/arrow_right"
         android:layout_toRightOf="@+id/arrow_right"
-        android:layout_toEndOf="@+id/arrow_right" />
+        android:text="DOLEVA" />
 
     <Button
         android:id="@+id/arrow_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DOPRAVA"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/arrow_up"
         android:layout_toRightOf="@+id/arrow_up"
-        android:layout_toEndOf="@+id/arrow_up" />
+        android:text="DOPRAVA" />
 
     <Button
         android:id="@+id/arrow_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NAHORU"
         android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/arrow_down"
         android:layout_toRightOf="@+id/arrow_down"
-        android:layout_toEndOf="@+id/arrow_down" />
+        android:text="NAHORU" />
 
     <Button
         android:id="@+id/arrow_down"
@@ -45,5 +45,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="DOLU" />
+
+
+    <View
+        android:id="@+id/announcer_background"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_weight="1"
+        android:background="@color/anonFieldColor" />
+
+    <TextView
+        android:id="@+id/levelUp_announcer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
 
 </RelativeLayout>

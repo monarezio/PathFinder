@@ -1,5 +1,6 @@
 package net.zdendukmonarezio.pathfinder.presentation.main;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<Maze> mazes;
-
+    private int color1;
+    private int color2;
     private RecyclerViewListener mListener = null;
 
     // Provide a reference to the views for each data item
@@ -32,8 +34,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Maze> mazesConstruct) {
+    public MyAdapter(List<Maze> mazesConstruct, Context context) {
         mazes = mazesConstruct;
+        color1 = context.getResources().getColor(R.color.white);
+        color2 = context.getResources().getColor(R.color.blueFieldColor);
     }
 
     // Create new views (invoked by the layout manager)
@@ -52,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.itemView.setBackgroundColor(position % 2 == 0 ? color1 : color2);
         holder.title.setText(mazes.get(position).component2());
         holder.desc.setText(mazes.get(position).component3());
         holder.itemView.setOnClickListener(v -> {

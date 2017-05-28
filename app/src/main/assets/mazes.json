@@ -2,12 +2,60 @@
   "list": [
     {
       "fileName": "0",
-      "name": "First level",
+      "name": "Level 1",
       "description": "Some random description for the level."
     },
     {
       "fileName": "1",
-      "name": "Second level",
+      "name": "Level 2",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "2",
+      "name": "Level 3",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "3",
+      "name": "Level 4",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "4",
+      "name": "Level 5",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "5",
+      "name": "Level 6",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "6",
+      "name": "Level 7",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "7",
+      "name": "Level 8",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "8",
+      "name": "Level 9",
+      "description": "DOES NOT EXIST"
+    }
+  ,
+    {
+      "fileName": "9",
+      "name": "Level 10",
       "description": "DOES NOT EXIST"
     }
   ]

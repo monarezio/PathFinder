@@ -32,12 +32,14 @@ public class BoardFieldWidget extends View {
         this.gameField = gameField;
         this.row = row;
         this.column = column;
+        this.fieldWidth = fieldWidth;
         setClickable(true);
 
         gridPaint = new Paint();
         gridPaint.setColor(gameField == Field.SOLID ? ContextCompat.getColor(getContext(), R.color.anonFieldColor) : gameField == Field.AIR ?
                 ContextCompat.getColor(getContext(), R.color.blueFieldColor) : gameField == Field.PLAYER ? ContextCompat.getColor(getContext(), R.color.colorPrimaryDark) :
-                ContextCompat.getColor(getContext(), R.color.colorAccent));
+                gameField == Field.ENEMY ? ContextCompat.getColor(getContext(), R.color.redFieldColor)
+                        : gameField == Field.FINISH ? ContextCompat.getColor(getContext(), R.color.colorAccent) : ContextCompat.getColor(getContext(), R.color.white));
 
         int[] attrs = new int[]{R.attr.selectableItemBackground};
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs);
@@ -61,10 +63,11 @@ public class BoardFieldWidget extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getWidth();
-        int height = getHeight();
+        /*int width = getWidth();
+        int height = getHeight();*/
 
-        canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);
+        canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
+        /*canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);*/
 
     }
 

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         // specify an adapter (see also next example)
         Intent intent = getIntent();
-        mAdapter = new MyAdapter(Mazes.getIntance().getMazes(this).toBlocking().first().component1());
+        mAdapter = new MyAdapter(Mazes.getIntance().getMazes(this).toBlocking().first().component1(), this);
 
         // set listener for RecyclerView
         mAdapter.setOnClickListener(position -> {
