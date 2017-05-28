@@ -68,9 +68,9 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.create(listOf(from)))
 
-    override fun didLoose(): Boolean = false
+    override fun didLoose(): Boolean = getPlayerPosition().isEmpty()
 
-    override fun didWin(): Boolean = true
+    override fun didWin(): Boolean = !board.find(Field.FINISH).isEmpty()
 
     companion object {
 
