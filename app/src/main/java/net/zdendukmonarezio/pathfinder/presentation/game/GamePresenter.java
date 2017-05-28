@@ -19,12 +19,6 @@ public class GamePresenter extends Presenter<GameView> {
     }
 
     public void onMoveMade(Direction direction) {
-        /*game.didLoose() ? viewIfExists().subscribe(view -> {
-            view.gameLost(false);
-        }) : game.didWin() ? viewIfExists().subscribe(view -> {
-            view.gameLost(true);
-        }):presentMove(direction);
-*/
         presentMove(direction);
         if (game.didLoose()) {
             viewIfExists().subscribe(view -> {

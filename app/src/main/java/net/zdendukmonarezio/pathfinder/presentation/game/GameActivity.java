@@ -13,6 +13,9 @@ import net.zdendukmonarezio.pathfinder.R;
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board;
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction;
 import net.zdendukmonarezio.pathfinder.domain.mazes.Mazes;
+import net.zdendukmonarezio.pathfinder.domain.mazes.models.Maze;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +25,8 @@ import nucleus.view.NucleusActivity;
 
 @RequiresPresenter(GamePresenter.class)
 public class GameActivity extends NucleusActivity<GamePresenter> implements GameView {
+
+    Mazes mazes;
 
     public static int gameId;
 
@@ -44,6 +49,7 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         presenter.setupGame(gameId, this);
         announcer_background.setAlpha(0f);
         levelUp_announcer.setAlpha(0f);
+        mazes = Mazes.getInstance();
     }
 
     @Override
@@ -60,6 +66,7 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
 
     @Override
     public void gameWon() {
+        mazes.setFinished(this, mazes.getMazes(this).toBlocking().first().component1().get(gameId).getFileName());
         gameId++;
         getPresenter().setupGame(gameId, this);
         fadeIn(announcer_background, 500);
@@ -67,7 +74,7 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         levelUp_announcer.setText("You won!");
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
-            levelUp_announcer.setText(Mazes.getIntance().getMazes(this).toBlocking().first().component1().get(gameId).getName());
+            levelUp_announcer.setText(mazes.getMazes(this).toBlocking().first().component1().get(gameId).getName());
             handler.postDelayed(() -> {
                 fadeOut(levelUp_announcer, 1000);
                 fadeOut(announcer_background, 1000);
