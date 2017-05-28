@@ -93,7 +93,7 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        view.setVisibility(View.GONE);
+                        view.setVisibility(View.INVISIBLE);
                     }
                 });
     }
