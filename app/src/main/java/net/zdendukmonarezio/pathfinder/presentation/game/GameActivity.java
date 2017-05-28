@@ -33,7 +33,6 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
 
     @Override
     public void showGameBoard(Board gameBoard) {
-        System.out.println("vymrdanec");
         System.out.println(gameBoardLayout);
         gameBoardLayout.setBoard(gameBoard);
     }
