@@ -27,5 +27,5 @@ data class Coordinate(val x: Int, val y: Int) {
     fun getNextCoordinates(directions: Set<Direction>): Set<Coordinate>
             = directions.map { i -> getNextCoordinate(i) }.toSet()
 
-    fun isEmpty(): Boolean = x == -1 && y == - 1
+    fun isEmpty(): Boolean = x == -1 || y == - 1
 }

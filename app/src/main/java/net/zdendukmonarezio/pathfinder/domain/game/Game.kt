@@ -70,7 +70,8 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun didLoose(): Boolean = getPlayerPosition().isEmpty()
 
-    override fun didWin(): Boolean = !board.find(Field.FINISH).isEmpty()
+    override fun didWin(): Boolean = board.find(Field.FINISH).isEmpty()
+
 
     companion object {
 
