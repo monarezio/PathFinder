@@ -25,6 +25,7 @@ public class GamePresenter extends Presenter<GameView> {
             view.gameLost(true);
         }):presentMove(direction);
 */
+        presentMove(direction);
         if (game.didLoose()) {
             viewIfExists().subscribe(view -> {
                 view.gameLost();
@@ -33,8 +34,6 @@ public class GamePresenter extends Presenter<GameView> {
             viewIfExists().subscribe(view -> {
                 view.gameWon();
             });
-        } else {
-            presentMove(direction);
         }
     }
 
