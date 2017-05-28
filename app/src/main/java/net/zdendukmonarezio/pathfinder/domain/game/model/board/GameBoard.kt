@@ -11,7 +11,8 @@ data class GameBoard private constructor(private val fields: List<List<Field>>) 
 
     override fun find(field: Field): Coordinate {
         val y = fields.indexOfFirst { i -> i.contains(field) }
-        val x = fields[y].indexOfFirst { i -> i == field }
+        val x = if(y == -1) -1
+                else fields[y].indexOfFirst { i -> i == field }
         return Coordinate(x, y)
     }
 
