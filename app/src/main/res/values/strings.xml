@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PathFinder</string>
+    <string name="finished_levels">finished_levels</string>
+    <string name="levels">levels</string>
 </resources>

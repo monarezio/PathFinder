@@ -14,7 +14,9 @@ data class Path private constructor(val coordinates: List<Coordinate>): Comparab
     operator fun plus(b: Path): Path = Path.create(coordinates + b.coordinates)
 
     override fun compareTo(other: Path): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(other.isEmpty())
+            return -1
+        return getSize() - other.getSize()
     }
 
     companion object {

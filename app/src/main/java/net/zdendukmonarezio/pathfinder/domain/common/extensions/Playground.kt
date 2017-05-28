@@ -3,6 +3,7 @@ package net.zdendukmonarezio.pathfinder.domain.common.extensions
 import com.google.gson.GsonBuilder
 import net.zdendukmonarezio.pathfinder.domain.game.Game
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.GameBoard
+import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field
 
@@ -12,15 +13,11 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field
 
 fun main(args: Array<String>) {
     var game = Game.createMaze(GameBoard.createBoard(listOf(
-            listOf(Field.AIR, Field.FINISH, Field.AIR, Field.AIR),
             listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR),
-            listOf(Field.AIR, Field.AIR, Field.PLAYER, Field.AIR),
-            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR)
+            listOf(Field.SOLID, Field.SOLID, Field.AIR, Field.SOLID),
+            listOf(Field.SOLID, Field.AIR, Field.AIR, Field.SOLID),
+            listOf(Field.SOLID, Field.SOLID, Field.AIR, Field.AIR)
     )))
 
-    game = game.move(Direction.SOUTH)
-    game = game.move(Direction.WEST)
-    game = game.move(Direction.WEST)
-    game = game.move(Direction.NORTH)
-    println(game.getBoard())
+    print(game.getPath(Coordinate(0, 0), Coordinate(3, 3)))
 }

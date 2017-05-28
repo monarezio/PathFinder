@@ -46,17 +46,26 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun getBoard(): Board = board
 
-    private fun getPath(from: Coordinate, to: Coordinate, tmpPath: Path): Path {
+    private fun getPath(from: Coordinate, to: Coordinate, tmpPath: Path): Path { //TODO: Repair a bug where no path found when x is the biggest
         if(to == from)
             return tmpPath
 
-        return from.getNextCoordinates(getAvailableMoves(from))
-                .filter { i -> tmpPath.coordinates.contains(i) }
+        val nextMoves = from.getNextCoordinates(getAvailableMoves(from))
+                .filter { i -> !tmpPath.coordinates.contains(i) }
+
+        println(from.toString() + " => " + nextMoves)
+
+        if(nextMoves.isEmpty()) {
+            println("---------------")
+            return Path.createEmpty()
+        }
+
+        return nextMoves
                 .map { i -> getPath(i, to, tmpPath + i) }
                 .sorted().first()
     }
 
-    override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.createEmpty())
+    override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.create(listOf(from)))
 
 
     companion object {
