@@ -14,6 +14,7 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board;
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction;
 import net.zdendukmonarezio.pathfinder.domain.mazes.Mazes;
 import net.zdendukmonarezio.pathfinder.domain.mazes.models.Maze;
+import net.zdendukmonarezio.pathfinder.presentation.main.MainActivity;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
 
     @Override
     public void gameLost() {
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         /*intent.putExtra();*/
         startActivity(intent);
     }
