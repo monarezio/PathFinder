@@ -13,6 +13,7 @@ class Mazes private constructor(){
 
     fun getMazes(context: Context): Observable<MazeList> = loader.getListOfMazes(context)
 
+    fun setFinished(context: Context, fileName: String) = loader.setFinished(context, fileName)
 
     companion object {
         @JvmStatic val intance = Mazes()
