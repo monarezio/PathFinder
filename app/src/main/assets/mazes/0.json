@@ -1,8 +1,8 @@
 {
-  "maze": [
-    ["SOLID", "SOLID", "SOLID", "SOLID"],
-    ["FINISH", "AIR", "PLAYER", "AIR"],
-    ["SOLID", "SOLID", "SOLID", "SOLID"],
-    ["SOLID", "SOLID", "SOLID", "SOLID"]
+  "fields": [
+    ["AIR", "AIR", "AIR", "AIR"],
+    ["SOLID", "AIR", "PLAYER", "AIR"],
+    ["AIR", "AIR", "AIR", "AIR"],
+    ["AIR", "AIR", "AIR", "FINISH"]
   ]
 }

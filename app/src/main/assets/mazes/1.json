@@ -1,0 +1,8 @@
+{
+  "fields": [
+    ["SOLID", "SOLID", "SOLID", "SOLID"],
+    ["FINISH", "AIR", "PLAYER", "AIR"],
+    ["SOLID", "AIR", "SOLID", "SOLID"],
+    ["SOLID", "AIR", "SOLID", "SOLID"]
+  ]
+}
