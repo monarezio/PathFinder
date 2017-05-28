@@ -60,9 +60,16 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
 
     @Override
     public void gameLost() {
-        Intent intent = new Intent(this, MainActivity.class);
-        /*intent.putExtra();*/
-        startActivity(intent);
+        levelUp_announcer.setText("You lose!");
+        fadeIn(announcer_background, 500);
+        fadeIn(levelUp_announcer, 500);
+        levelUp_announcer.setAlpha(0f);
+        announcer_background.setAlpha(0f);
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }, 1000);
     }
 
     @Override
@@ -70,9 +77,9 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         mazes.setFinished(this, mazes.getMazes(this).toBlocking().first().component1().get(gameId).getFileName());
         gameId++;
         getPresenter().setupGame(gameId, this);
+        levelUp_announcer.setText("You won!");
         fadeIn(announcer_background, 500);
         fadeIn(levelUp_announcer, 500);
-        levelUp_announcer.setText("You won!");
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             levelUp_announcer.setText(mazes.getMazes(this).toBlocking().first().component1().get(gameId).getName());
