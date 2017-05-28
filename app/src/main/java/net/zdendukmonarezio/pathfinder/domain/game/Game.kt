@@ -15,6 +15,7 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Path
  * Created by monarezio on 22/04/2017.
  */
 class Game private constructor(private val board: Board) : Maze{
+
     override fun getPlayerPosition(): Coordinate = board.find(Field.PLAYER)
 
     override fun getAvailableMoves(pos: Coordinate): Set<Direction> {
@@ -67,6 +68,9 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.create(listOf(from)))
 
+    override fun didLoose(): Boolean = false
+
+    override fun didWin(): Boolean = true
 
     companion object {
 

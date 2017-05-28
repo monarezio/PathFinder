@@ -40,4 +40,14 @@ interface Maze {
      * returns the correct path
      */
     fun getPath(from: Coordinate, to: Coordinate): Path
+
+    /**
+     * returns true if there is no finish field
+     */
+    fun didWin(): Boolean
+
+    /**
+     * returns true if there is no player field
+     */
+    fun didLoose(): Boolean
 }
