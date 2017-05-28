@@ -72,7 +72,6 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun didWin(): Boolean = board.find(Field.FINISH).isEmpty()
 
-
     companion object {
 
         @JvmStatic fun createMaze(board: Board): Maze = Game(board)
