@@ -16,7 +16,7 @@ class Mazes private constructor(){
     fun setFinished(context: Context, fileName: String) = loader.setFinished(context, fileName)
 
     companion object {
-        @JvmStatic val instance = Mazes()
+        @JvmStatic val intance = Mazes()
     }
 
 }
