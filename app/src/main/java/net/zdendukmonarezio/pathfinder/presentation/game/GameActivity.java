@@ -13,6 +13,7 @@ import net.zdendukmonarezio.pathfinder.R;
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board;
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction;
 import net.zdendukmonarezio.pathfinder.domain.mazes.Mazes;
+import net.zdendukmonarezio.pathfinder.presentation.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,9 +57,16 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
 
     @Override
     public void gameLost() {
-        Intent intent = new Intent(this, GameActivity.class);
-        /*intent.putExtra();*/
-        startActivity(intent);
+        levelUp_announcer.setText("You lose!");
+        fadeIn(announcer_background, 500);
+        fadeIn(levelUp_announcer, 500);
+        levelUp_announcer.setAlpha(0f);
+        announcer_background.setAlpha(0f);
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }, 1000);
     }
 
     @Override
