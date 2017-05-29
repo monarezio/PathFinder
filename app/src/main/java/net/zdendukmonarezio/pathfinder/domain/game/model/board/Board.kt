@@ -29,6 +29,11 @@ interface Board {
     fun getFields(): List<List<Field>>
 
     /**
+     * returns the field on the coord
+     */
+    fun getField(coord: Coordinate): Field
+
+    /**
      * returns the amount of rows
      */
     fun getRows(): Int

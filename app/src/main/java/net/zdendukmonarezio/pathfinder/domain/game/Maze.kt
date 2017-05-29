@@ -16,6 +16,11 @@ interface Maze {
     fun getPlayerPosition(): Coordinate
 
     /**
+     * returns the enemy position, if no enemy returns (-1, -1)
+     */
+    fun getEnemyPosition(): Coordinate
+
+    /**
      * returns a set of next moves, form the position of the player.
      */
     fun getAvailableMoves(): Set<Direction>
@@ -50,4 +55,14 @@ interface Maze {
      * returns true if there is no player field
      */
     fun didLoose(): Boolean
+
+    /**
+     * swaps two fields
+     */
+    fun swapFields(pos: Coordinate, direction: Direction): Maze
+
+    /**
+     * swaps two fields
+     */
+    fun swapFields(pos: Coordinate, newPos: Coordinate): Maze
 }

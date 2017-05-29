@@ -1,8 +1,8 @@
 {
   "fields": [
-    ["AIR", "AIR", "AIR", "AIR"],
-    ["SOLID", "AIR", "PLAYER", "AIR"],
-    ["AIR", "AIR", "AIR", "AIR"],
-    ["AIR", "AIR", "AIR", "FINISH"]
+    ["ENEMY", "AIR", "AIR", "PLAYER"],
+    ["SOLID", "SOLID", "AIR", "SOLID"],
+    ["AIR", "AIR", "AIR", "SOLID"],
+    ["AIR", "SOLID", "AIR", "FINISH"]
   ]
 }
