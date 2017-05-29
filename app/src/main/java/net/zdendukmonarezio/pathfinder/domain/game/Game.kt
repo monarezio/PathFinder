@@ -72,7 +72,7 @@ class Game private constructor(private val board: Board) : Maze{
                 .sorted().first()
     }
 
-    fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path = Path.createEmpty()): Path {
+    private fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path = Path.createEmpty()): Path {
         if(tmpPath.getSize() <= 1 || from.getNextCoordinates(getAvailableMoves(from)).filter { i -> !blackList.coordinates.contains(i)}
                 .size > 1)
             return blackList
