@@ -18,6 +18,8 @@ class Game private constructor(private val board: Board) : Maze{
 
     override fun getPlayerPosition(): Coordinate = board.find(Field.PLAYER)
 
+    override fun getEnemyPosition(): Coordinate = board.find(Field.ENEMY)
+
     override fun getAvailableMoves(pos: Coordinate): Set<Direction> {
         return mapOf<Direction, Coordinate>(Pair(Direction.NORTH, pos.north()), Pair(Direction.EAST, pos.east()),
                 Pair(Direction.SOUTH, pos.south()), Pair(Direction.WEST, pos.west()))
@@ -34,43 +36,64 @@ class Game private constructor(private val board: Board) : Maze{
 
         val pos = getPlayerPosition()
 
-        val board = this.board.set(pos, Field.AIR) //Remove the player from the current position
+        val enemyPos = getEnemyPosition()
 
-        if(direction == Direction.NORTH)
-            return createMaze(board.set(pos.north(), Field.PLAYER))
-        else if(direction == Direction.EAST)
-            return createMaze(board.set(pos.east(), Field.PLAYER))
-        else if(direction == Direction.SOUTH)
-            return createMaze(board.set(pos.south(), Field.PLAYER))
-        return createMaze(board.set(pos.west(), Field.PLAYER))
+        val maze: Maze = if(!enemyPos.isEmpty()) {
+            val path = getPath(enemyPos, pos)
+            println("Path: " + path)
+            val newEnemyPosition = if (!path.isEmpty()) path.coordinates[1] else enemyPos
+            createMaze(board.set(enemyPos, Field.AIR).set(newEnemyPosition, Field.ENEMY))
+        } else this
+
+        if(!maze.didLoose())
+            return createMaze(maze.getBoard().set(pos, Field.AIR).set(pos.getNextCoordinate(direction), Field.PLAYER)) //Move the player (have to replace the tiles)
+        else
+            return maze
     }
 
     override fun getBoard(): Board = board
 
-    private fun getPath(from: Coordinate, to: Coordinate, tmpPath: Path): Path { //TODO: Repair a bug where no path found when x is the biggest
+    private fun getPath(from: Coordinate, to: Coordinate, tmpPath: Path, blackList: Path): Path {
         if(to == from)
             return tmpPath
 
         val nextMoves = from.getNextCoordinates(getAvailableMoves(from))
                 .filter { i -> !tmpPath.coordinates.contains(i) }
-
-        println(from.toString() + " => " + nextMoves)
+                .filter { i -> !blackList.coordinates.contains(i) }
 
         if(nextMoves.isEmpty()) {
-            println("---------------")
-            return Path.createEmpty()
+            val junction = backTrack(from, tmpPath, blackList)
+            val dif = tmpPath - junction
+            return getPath(dif.last(), to, dif, blackList + junction)
         }
 
         return nextMoves
-                .map { i -> getPath(i, to, tmpPath + i) }
+                .map { i -> getPath(i, to, tmpPath + i, blackList) }
                 .sorted().first()
     }
 
-    override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.create(listOf(from)))
+    private fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path = Path.createEmpty()): Path {
+        if(tmpPath.getSize() <= 1 || from.getNextCoordinates(getAvailableMoves(from)).filter { i -> !blackList.coordinates.contains(i)}
+                .size > 1)
+            return blackList
+
+        val nextPath = tmpPath.removeLast()
+        return backTrack(nextPath.last(), nextPath, blackList + tmpPath.last())
+    }
+
+    override fun getPath(from: Coordinate, to: Coordinate): Path = getPath(from, to, Path.create(listOf(from)), Path.createEmpty())
 
     override fun didLoose(): Boolean = getPlayerPosition().isEmpty()
 
     override fun didWin(): Boolean = board.find(Field.FINISH).isEmpty()
+
+    override fun swapFields(pos: Coordinate, newPos: Coordinate): Maze {
+        val field = board.getField(pos)
+        val targetField = board.getField(newPos)
+        return createMaze(board.set(newPos, field).set(pos, targetField))
+    }
+
+    override fun swapFields(pos: Coordinate, direction: Direction): Maze = swapFields(pos, pos.getNextCoordinate(direction))
 
     companion object {
 

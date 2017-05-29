@@ -15,9 +15,9 @@ fun main(args: Array<String>) {
     var game = Game.createMaze(GameBoard.createBoard(listOf(
             listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR),
             listOf(Field.SOLID, Field.SOLID, Field.AIR, Field.SOLID),
-            listOf(Field.SOLID, Field.AIR, Field.AIR, Field.SOLID),
-            listOf(Field.SOLID, Field.SOLID, Field.AIR, Field.AIR)
+            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR),
+            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR)
     )))
 
-    print(game.getPath(Coordinate(0, 0), Coordinate(3, 3)))
+    print(game.getPath(Coordinate(0, 0), Coordinate(0, 3)))
 }
