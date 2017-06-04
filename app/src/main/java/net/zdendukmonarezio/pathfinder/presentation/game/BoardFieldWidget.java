@@ -65,9 +65,6 @@ public class BoardFieldWidget extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        /*int width = getWidth();
-        int height = getHeight();*/
-
         Rect imageBounds = canvas.getClipBounds();
         if (gameField == Field.ENEMY) {
             drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_bug_report_black_48dp, getResources().getColor(R.color.redFieldColor));
@@ -77,7 +74,6 @@ public class BoardFieldWidget extends View {
             drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_room_black_48dp, getResources().getColor(R.color.colorAccent));
         } else {
             canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
-            /*canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);*/
         }
     }
 

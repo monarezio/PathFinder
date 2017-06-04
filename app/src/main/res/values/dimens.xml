@@ -1,4 +1,18 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="field_margin">4dp</dimen>
+
+    <dimen name="gameBoard_horizontal_margin">24dp</dimen>
+    <dimen name="gameBoard_vertical_margin">24dp</dimen>
+
+    <dimen name="margin_announcer_background">400dp</dimen>
+    <dimen name="text_size_announcer">40dp</dimen>
+
+    <dimen name="item_title_paddingtop">25dp</dimen>
+    <dimen name="item_title_textsize">24sp</dimen>
+    <dimen name="item_title_marginleft">10dp</dimen>
+    <dimen name="item_desc_marginleft">10dp</dimen>
+    <dimen name="item_checkbox_marginend">30dp</dimen>
+    <dimen name="item_checkbox_marginright">30dp</dimen>
+    <dimen name="item_desc_paddingbottom">25dp</dimen>
 </resources>

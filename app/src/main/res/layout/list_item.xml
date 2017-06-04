@@ -11,10 +11,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:paddingTop="25dp"
+        android:layout_marginLeft="@dimen/item_title_marginleft"
+        android:paddingTop="@dimen/item_title_paddingtop"
         android:text="TextView"
-        android:textSize="24sp"
-        android:layout_marginLeft="10dp"/>
+        android:textSize="@dimen/item_title_textsize" />
 
     <TextView
         android:id="@+id/desc"
@@ -23,9 +23,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/title"
-        android:paddingBottom="25dp"
-        android:text="TextView"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="@dimen/item_desc_marginleft"
+        android:paddingBottom="@dimen/item_desc_paddingbottom"
+        android:text="TextView" />
 
     <CheckBox
         android:id="@+id/checkBox_finished"
@@ -34,8 +34,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:clickable="false"/>
+        android:layout_marginEnd="@dimen/item_checkbox_marginend"
+        android:layout_marginRight="@dimen/item_checkbox_marginright"
+        android:clickable="false" />
 
 </RelativeLayout>
