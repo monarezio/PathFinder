@@ -1,4 +1,4 @@
-package net.zdendukmonarezio.pathfinder.domain.game
+package net.zdendukmonarezio.pathfinder.domain.game.maze
 
 import android.content.Context
 import com.google.gson.GsonBuilder
@@ -14,23 +14,23 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Path
 /**
  * Created by monarezio on 22/04/2017.
  */
-class Game private constructor(private val board: Board) : Maze{
+class Game private constructor(private val board: net.zdendukmonarezio.pathfinder.domain.game.model.board.Board) : Maze {
 
-    override fun getPlayerPosition(): Coordinate = board.find(Field.PLAYER)
+    override fun getPlayerPosition(): net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate = board.find(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field.PLAYER)
 
-    override fun getEnemyPosition(): Coordinate = board.find(Field.ENEMY)
+    override fun getEnemyPosition(): net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate = board.find(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field.ENEMY)
 
-    override fun getAvailableMoves(pos: Coordinate): Set<Direction> {
-        return mapOf<Direction, Coordinate>(Pair(Direction.NORTH, pos.north()), Pair(Direction.EAST, pos.east()),
-                Pair(Direction.SOUTH, pos.south()), Pair(Direction.WEST, pos.west()))
+    override fun getAvailableMoves(pos: net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate): Set<net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction> {
+        return mapOf<net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction, net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate>(Pair(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction.NORTH, pos.north()), Pair(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction.EAST, pos.east()),
+                Pair(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction.SOUTH, pos.south()), Pair(net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction.WEST, pos.west()))
                 .filter { i -> board.getFields().isInBounds(i.value)}
-                .filter { i -> board.getFields()[i.value.y][i.value.x] != Field.SOLID  }
+                .filter { i -> board.getFields()[i.value.y][i.value.x] != net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field.SOLID }
                 .map { i -> i.key }.toSet()
     }
 
-    override fun getAvailableMoves(): Set<Direction> = getAvailableMoves(getPlayerPosition())
+    override fun getAvailableMoves(): Set<net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction> = getAvailableMoves(getPlayerPosition())
 
-    override fun move(direction: Direction): Maze {
+    override fun move(direction: net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction): Maze {
         if(!getAvailableMoves().contains(direction))
             return this
 
@@ -45,13 +45,15 @@ class Game private constructor(private val board: Board) : Maze{
             createMaze(board.set(enemyPos, Field.AIR).set(newEnemyPosition, Field.ENEMY))
         } else this
 
+        if(maze.getEnemyPosition() == pos.getNextCoordinate(direction)) return createMaze(maze.getBoard().set(pos, Field.AIR))
+
         if(!maze.didLoose())
             return createMaze(maze.getBoard().set(pos, Field.AIR).set(pos.getNextCoordinate(direction), Field.PLAYER)) //Move the player (have to replace the tiles)
         else
             return maze
     }
 
-    override fun getBoard(): Board = board
+    override fun getBoard(): net.zdendukmonarezio.pathfinder.domain.game.model.board.Board = board
 
     private fun getPath(from: Coordinate, to: Coordinate, tmpPath: Path, blackList: Path): Path {
         if(to == from)
@@ -72,7 +74,7 @@ class Game private constructor(private val board: Board) : Maze{
                 .sorted().first()
     }
 
-    private fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path = Path.createEmpty()): Path {
+    override fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path): Path {
         if(tmpPath.getSize() <= 1 || from.getNextCoordinates(getAvailableMoves(from)).filter { i -> !blackList.coordinates.contains(i)}
                 .size > 1)
             return blackList
@@ -104,6 +106,8 @@ class Game private constructor(private val board: Board) : Maze{
             val json = MazeData().getRawMazeData(context, fileName).toBlocking().first()
             return createMaze(gson.fromJson(json, GameBoard::class.java))
         }
+
+        fun createEmpty(rows: Int, columns: Int) = createMaze(GameBoard.createEmpty(rows, columns))
 
     }
 }

@@ -30,5 +30,9 @@ data class GameBoard private constructor(private val fields: List<List<Field>>) 
 
     companion object {
         fun createBoard(fields: List<List<Field>>): Board = GameBoard(fields)
+
+        fun createEmpty(rows: Int, columns: Int) = GameBoard(
+                IntRange(0, rows).map { i -> IntRange(0, columns).map { i -> Field.AIR } }
+        )
     }
 }

@@ -3,8 +3,8 @@ package net.zdendukmonarezio.pathfinder.presentation.game;
 import android.content.Context;
 import android.os.Bundle;
 
-import net.zdendukmonarezio.pathfinder.domain.game.Game;
-import net.zdendukmonarezio.pathfinder.domain.game.Maze;
+import net.zdendukmonarezio.pathfinder.domain.game.maze.Game;
+import net.zdendukmonarezio.pathfinder.domain.game.maze.Maze;
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board;
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction;
 import net.zdendukmonarezio.pathfinder.presentation.Presenter;

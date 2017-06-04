@@ -1,8 +1,6 @@
-{
-  "fields": [
-    ["ENEMY", "AIR", "AIR", "AIR"],
-    ["SOLID", "SOLID", "AIR", "SOLID"],
-    ["AIR", "PLAYER", "AIR", "SOLID"],
-    ["AIR", "SOLID", "AIR", "FINISH"]
-  ]
-}
+{"fields":[["PLAYER","SOLID","AIR","AIR","AIR","AIR"],
+  ["AIR","SOLID","AIR","SOLID","SOLID","ENEMY"],
+  ["AIR","SOLID","AIR","AIR","SOLID","SOLID"],
+  ["AIR","SOLID","SOLID","AIR","SOLID","SOLID"],
+  ["AIR","AIR","AIR","AIR","SOLID","FINISH"],
+  ["SOLID","SOLID","SOLID","AIR","AIR","AIR"]]}

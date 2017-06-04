@@ -1,4 +1,4 @@
-package net.zdendukmonarezio.pathfinder.domain.game
+package net.zdendukmonarezio.pathfinder.domain.game.maze
 
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.Board
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate
@@ -65,4 +65,9 @@ interface Maze {
      * swaps two fields
      */
     fun swapFields(pos: Coordinate, newPos: Coordinate): Maze
+
+    /**
+     * Return the path to the last junction
+     */
+    fun backTrack(from: Coordinate, tmpPath: Path, blackList: Path = Path.createEmpty()): Path
 }

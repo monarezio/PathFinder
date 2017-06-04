@@ -1,7 +1,9 @@
 package net.zdendukmonarezio.pathfinder.domain.common.extensions
 
 import com.google.gson.GsonBuilder
-import net.zdendukmonarezio.pathfinder.domain.game.Game
+import net.zdendukmonarezio.pathfinder.domain.game.generator.GameGenerator
+import net.zdendukmonarezio.pathfinder.domain.game.maze.Game
+import net.zdendukmonarezio.pathfinder.domain.game.maze.Maze
 import net.zdendukmonarezio.pathfinder.domain.game.model.board.GameBoard
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Coordinate
 import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Direction
@@ -12,12 +14,8 @@ import net.zdendukmonarezio.pathfinder.domain.game.model.utils.Field
  */
 
 fun main(args: Array<String>) {
-    var game = Game.createMaze(GameBoard.createBoard(listOf(
-            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR),
-            listOf(Field.SOLID, Field.SOLID, Field.AIR, Field.SOLID),
-            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR),
-            listOf(Field.AIR, Field.AIR, Field.AIR, Field.AIR)
-    )))
-
-    print(game.getPath(Coordinate(0, 0), Coordinate(0, 3)))
+    val a = GameGenerator(5, 5)
+    val b = a.createMaze(Coordinate(0, 0)).getBoard() as GameBoard
+    val g = GsonBuilder().create()
+    print(g.toJson(b))
 }
