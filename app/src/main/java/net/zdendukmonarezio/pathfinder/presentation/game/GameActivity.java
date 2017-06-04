@@ -73,7 +73,10 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
     public void gameWon() {
         mazes.setFinished(this, mazes.getMazes(this).toBlocking().first().component1().get(gameId).getFileName());
         gameId++;
-        getPresenter().setupGame(gameId, this);
+        annouceWin();
+    }
+
+    private void annouceWin() {
         fadeIn(announcer_background, 500);
         fadeIn(levelUp_announcer, 500);
         levelUp_announcer.setText("You won!");
@@ -83,6 +86,9 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
             handler.postDelayed(() -> {
                 fadeOut(levelUp_announcer, 1000);
                 fadeOut(announcer_background, 1000);
+                handler.postDelayed(() -> {
+                    getPresenter().setupGame(gameId, this);
+                }, 1000);
             }, 1000);
         }, 3000);
     }
@@ -130,6 +136,5 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
     public void moveRight(View view) {
         getPresenter().onMoveMade(Direction.EAST);
     }
-
 
 }

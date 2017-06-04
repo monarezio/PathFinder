@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -40,8 +42,8 @@ public class BoardFieldWidget extends View {
                 ContextCompat.getColor(getContext(), R.color.blueFieldColor) : gameField == Field.PLAYER ? ContextCompat.getColor(getContext(), R.color.colorPrimaryDark) :
                 gameField == Field.ENEMY ? ContextCompat.getColor(getContext(), R.color.redFieldColor)
                         : gameField == Field.FINISH ? ContextCompat.getColor(getContext(), R.color.colorAccent) : ContextCompat.getColor(getContext(), R.color.white));
-
         int[] attrs = new int[]{R.attr.selectableItemBackground};
+
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs);
         int backgroundResource = typedArray.getResourceId(0, 0);
         setBackgroundResource(backgroundResource);
@@ -66,9 +68,26 @@ public class BoardFieldWidget extends View {
         /*int width = getWidth();
         int height = getHeight();*/
 
-        canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
-        /*canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);*/
+        Rect imageBounds = canvas.getClipBounds();
+        if (gameField == Field.ENEMY) {
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_bug_report_black_48dp);
+        } else if (gameField == Field.PLAYER) {
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_face_black_48dp);
+        } else if (gameField == Field.FINISH) {
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_room_black_48dp);
+        } else {
+            canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
+            /*canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);*/
+        }
+    }
 
+    private void drawImageField(Canvas canvas, Rect imageBounds, int fieldWidth, Paint gridPaint, int imageId) {
+        gridPaint.setColor(ContextCompat.getColor(getContext(), R.color.blueFieldColor));
+        canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
+        Drawable image = getResources().getDrawable(imageId);
+        image.setBounds(imageBounds);
+        image.setColorFilter(getResources().getColor(R.color.redFieldColor), PorterDuff.Mode.SRC_IN);
+        image.draw(canvas);
     }
 
     public int getRow() {
