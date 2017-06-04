@@ -70,23 +70,23 @@ public class BoardFieldWidget extends View {
 
         Rect imageBounds = canvas.getClipBounds();
         if (gameField == Field.ENEMY) {
-            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_bug_report_black_48dp);
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_bug_report_black_48dp, getResources().getColor(R.color.redFieldColor));
         } else if (gameField == Field.PLAYER) {
-            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_face_black_48dp);
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_face_black_48dp, getResources().getColor(R.color.colorPrimary));
         } else if (gameField == Field.FINISH) {
-            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_room_black_48dp);
+            drawImageField(canvas, imageBounds, fieldWidth, gridPaint, R.drawable.ic_room_black_48dp, getResources().getColor(R.color.colorAccent));
         } else {
             canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
             /*canvas.drawRoundRect(new RectF(10, 10, width, height), 50, 50, gridPaint);*/
         }
     }
 
-    private void drawImageField(Canvas canvas, Rect imageBounds, int fieldWidth, Paint gridPaint, int imageId) {
+    private void drawImageField(Canvas canvas, Rect imageBounds, int fieldWidth, Paint gridPaint, int imageId, int colorFilter) {
         gridPaint.setColor(ContextCompat.getColor(getContext(), R.color.blueFieldColor));
         canvas.drawRect(0, 0, fieldWidth, fieldWidth, gridPaint);
         Drawable image = getResources().getDrawable(imageId);
         image.setBounds(imageBounds);
-        image.setColorFilter(getResources().getColor(R.color.redFieldColor), PorterDuff.Mode.SRC_IN);
+        image.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
         image.draw(canvas);
     }
 

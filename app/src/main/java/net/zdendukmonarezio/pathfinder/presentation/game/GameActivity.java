@@ -24,9 +24,9 @@ import nucleus.view.NucleusActivity;
 @RequiresPresenter(GamePresenter.class)
 public class GameActivity extends NucleusActivity<GamePresenter> implements GameView {
 
-    Mazes mazes;
-
-    public static int gameId;
+    private Mazes mazes;
+    private Handler handler;
+    private int gameId;
 
     @BindView(R.id.game_board_layout)
     GameBoardLayout gameBoardLayout;
@@ -42,12 +42,17 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
+
         gameId = getIntent().getIntExtra("id", 0);
         GamePresenter presenter = getPresenter();
         presenter.setupGame(gameId, this);
+
         announcer_background.setAlpha(0f);
         levelUp_announcer.setAlpha(0f);
+
         mazes = Mazes.getInstance();
+
+        handler = new Handler();
     }
 
     @Override
@@ -62,7 +67,6 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         fadeIn(levelUp_announcer, 500);
         levelUp_announcer.setAlpha(0f);
         announcer_background.setAlpha(0f);
-        final Handler handler = new Handler();
         handler.postDelayed(() -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -80,7 +84,6 @@ public class GameActivity extends NucleusActivity<GamePresenter> implements Game
         fadeIn(announcer_background, 500);
         fadeIn(levelUp_announcer, 500);
         levelUp_announcer.setText("You won!");
-        final Handler handler = new Handler();
         handler.postDelayed(() -> {
             levelUp_announcer.setText(mazes.getMazes(this).toBlocking().first().component1().get(gameId).getName());
             handler.postDelayed(() -> {
